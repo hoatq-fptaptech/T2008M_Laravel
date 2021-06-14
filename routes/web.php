@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,3 +16,9 @@ use App\Http\Controllers\WebController;
 
 Route::get('/',[WebController::class,"home"]);
 Route::get('/about-us',[WebController::class,"aboutUs"]);
+Route::get('/categories',[CategoryController::class,"all"]);
+Route::get('/categories/new',[CategoryController::class,"form"]);
+Route::post('/categories/save',[CategoryController::class,"save"]);
+Route::get('/categories/edit/{id}',[CategoryController::class,"edit"]);
+Route::post('/categories/update/{id}',[CategoryController::class,"update"]);
+
