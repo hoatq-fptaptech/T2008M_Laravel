@@ -8,14 +8,24 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function all(){
+    public function all(Request  $request){
 //        $products = Product::all();
 
         // nối bảng để lấy tên category
 //        $products = Product::leftJoin("categories","categories.id","=","products.category_id")
 //            ->select("products.*","categories.name as category_name")->get();
         // dùng relationship
-        $products = Product::with("Category")->get();
+//        $s = $request->get("search");
+        $products = Product::with("Category")
+//            ->where("category_id","=",1)
+//            ->whereDate("created_at","2021-06-18")
+//            ->whereMonth("created_at",6)
+//            ->where("price",">",500)
+//                ->where("name","LIKE","%$s%") // tim kiem theo ten
+//              ->orderBy("price","asc")
+//                ->limit(1) // so luong lay
+//                ->skip(1) // so luong bo qua
+            ->get();
         return view("product.list",[
            "products"=>$products
         ]);
