@@ -26,7 +26,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <form action="{{url("/products/save")}}" method="post" class="col-md-6">
+                        <form action="{{url("/products/save")}}" method="post" class="col-md-6" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Name</label>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <input type="text" name="image" value="{{old("image")}}"  class="form-control">
+                                <input type="file" name="image" value="{{old("image")}}"  class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Description</label>

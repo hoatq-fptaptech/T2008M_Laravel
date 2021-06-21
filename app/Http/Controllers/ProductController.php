@@ -41,8 +41,8 @@ class ProductController extends Controller
     public function save(Request $request){
         $request->validate([
             "name"=>"required",
-            "image"=>"required",
-            "description"=>"required",
+           // "image"=>"required",
+         //   "description"=>"required",
             "price"=>"required|min:0",
             "qty"=>"required|min:0",
             "category_id"=>"required|numeric|min:1",
@@ -50,10 +50,30 @@ class ProductController extends Controller
            "name.required"=>"Vui lòng nhập tên sản phẩm",
            "category_id.min"=>"Vui lòng nhập danh mục",
         ]);
+        // upload file image
+        $image = null;
+        if($request->has("image")){
+            $file = $request->file("image");
+//            $fileName = $file->getClientOriginalName(); // lấy tên file
+            $extName = $file->getClientOriginalExtension();// lấy đuôi file ( ví dụ như png, jpg)
+            $fileName = time().".".$extName;
+            $fileSize = $file->getSize();// lấy kích thước file
+            $allow = ["png","jpg","jpeg","gif"];// chỉ cho phép nhưng file này up lên
+            if(in_array($extName,$allow)){ // nếu đuôi file trong danh sách cho phép
+                if($fileSize < 10000000){ // kich thuoc nho hon 10MB
+                    try {
+                        $file->move("upload",$fileName); // up file len host
+                        $image = $fileName;
+                    }catch (\Exception $e){}
+
+                }
+            }
+        }
+
         try {
             Product::create([
                 "name"=>$request->get("name"),
-                "image"=>$request->get("image"),
+                "image"=>$image,
                 "description"=>$request->get("description"),
                 "price"=>$request->get("price"),
                 "qty"=>$request->get("qty"),

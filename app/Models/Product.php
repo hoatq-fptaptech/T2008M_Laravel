@@ -22,4 +22,11 @@ class Product extends Model
 //        return $this->belongsTo(Category::class,"category_id");
         return $this->belongsTo(Category::class);
     }
+
+    public function getImage(){
+        if($this->image){
+            return asset("upload/".$this->image);
+        }
+        return asset("upload/default.png");
+    }
 }

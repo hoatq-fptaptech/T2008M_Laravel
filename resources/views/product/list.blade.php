@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>{{$item->__get("id")}}</td>
                                     <td>{{$item->__get("name")}}</td>
-                                    <td>{{$item->__get("image")}}</td>
+                                    <td><img width="70px" height="70px" src="{{$item->getImage()}}"/> </td>
                                     <td>{{$item->__get("description")}}</td>
                                     <td>{{$item->__get("price")}}</td>
                                     <td>{{$item->__get("qty")}}</td>
