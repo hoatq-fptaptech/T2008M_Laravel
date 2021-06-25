@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 use App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\ProductController;
+use App\Http\Controllers\User\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,16 +15,11 @@ use \App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// danh cho user
+Route::match(["get","post"],"login",[LoginController::class,"login"])->name("login");
 
-Route::get('/',[WebController::class,"home"]);
-Route::get('/about-us',[WebController::class,"aboutUs"]);
+Route::middleware("auth")->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
-Route::get('/categories',[CategoryController::class,"all"]);
-Route::get('/categories/new',[CategoryController::class,"form"]);
-Route::post('/categories/save',[CategoryController::class,"save"]);
-Route::get('/categories/edit/{id}',[CategoryController::class,"edit"]);
-Route::post('/categories/update/{id}',[CategoryController::class,"update"]);
 
-Route::get('/products',[ProductController::class,"all"]);
-Route::get('/products/new',[ProductController::class,"form"]);
-Route::post('/products/save',[ProductController::class,"save"]);

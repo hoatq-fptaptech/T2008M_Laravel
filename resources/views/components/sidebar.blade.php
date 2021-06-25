@@ -2,7 +2,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+            <img src="{{asset("dist/img/user2-160x160.jpg")}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
             <a href="#" class="d-block">Alexander Pierce</a>
@@ -27,19 +27,19 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="{{url("/")}}" class="nav-link">
+                <a href="{{url("admin/")}}" class="nav-link">
                     <i class="nav-icon far fa-circle text-danger"></i>
                     <p class="text">Home</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{url("categories")}}" class="nav-link">
+                <a href="{{url("admin/categories")}}" class="nav-link">
                     <i class="nav-icon far fa-circle text-warning"></i>
                     <p>Categories</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{url("products")}}" class="nav-link">
+                <a href="{{url("admin/products")}}" class="nav-link">
                     <i class="nav-icon far fa-circle text-info"></i>
                     <p>Products</p>
                 </a>
