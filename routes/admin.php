@@ -5,7 +5,7 @@ use App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 
-Route::match(["get","post"],"login",[LoginController::class,"login"])->name("login");
+//Route::match(["get","post"],"login",[LoginController::class,"login"])->name("login");
 
 Route::middleware("auth:admin")->group(function (){
     Route::get('/',[WebController::class,"home"]);
