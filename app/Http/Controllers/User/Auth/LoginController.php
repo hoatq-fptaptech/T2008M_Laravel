@@ -22,5 +22,9 @@ class LoginController extends Controller
             return redirect()->to("admin");
         }
         return redirect()->back()->withInput();
+
+        // Auth::user()-> trả về User object đang login
+        // Auth::id() -> trả về id của user đang login
+        // Auth::check() -> trả về true/false -> đã đăng nhập hay chưa
     }
 }

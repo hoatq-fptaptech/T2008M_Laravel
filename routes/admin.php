@@ -8,8 +8,10 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 //Route::match(["get","post"],"login",[LoginController::class,"login"])->name("login");
 
 Route::middleware("auth:admin")->group(function (){
-    Route::get('/',[WebController::class,"home"]);
-    Route::get('/about-us',[WebController::class,"aboutUs"]);
+    Route::middleware("admin")->group(function (){
+        Route::get('/',[WebController::class,"home"]);
+        Route::get('/about-us',[WebController::class,"aboutUs"]);
+    });
 
     Route::get('/categories',[CategoryController::class,"all"]);
     Route::get('/categories/new',[CategoryController::class,"form"]);
