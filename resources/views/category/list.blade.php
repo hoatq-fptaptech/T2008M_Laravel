@@ -49,8 +49,8 @@
                                     <td>{{$cat->id}}</td>
                                     <td>{{$cat->name}}</td>
                                     <td>{{$cat->products_count}}</td>
-                                    <td>{{$cat->created_at}}</td>
-                                    <td>{{$cat->updated_at}}</td>
+                                    <td>{{formatDate($cat->created_at)}}</td>
+                                    <td>{{formatDate($cat->updated_at)}}</td>
                                     <td><a href="{{url("/categories/edit",["id"=>$cat->id])}}">Điều chỉnh</a></td>
                                 </tr>
                             @endforeach

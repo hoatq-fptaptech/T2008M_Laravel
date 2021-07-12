@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Category</h1>
+                        <h1>Product</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -58,9 +58,10 @@
                                     <td>{{$item->__get("qty")}}</td>
 {{--                                    <td>{{$item->__get("category_name")}}</td>--}}
                                     <td>{{$item->Category->__get("name")}}</td>
-                                    <td>{{$item->__get("created_at")}}</td>
-                                    <td>{{$item->__get("updated_at")}}</td>
-                                    <td><a href="{{url("/categories/edit",["id"=>$item->id])}}">Điều chỉnh</a></td>
+                                    <td>{{formatDate($item->__get("created_at"))}}</td>
+                                    <td>{{formatDate($item->__get("updated_at"))}}</td>
+                                    <td><a href="{{url("/products/edit",["id"=>$item->id])}}">Điều chỉnh</a></td>
+                                    <td><a href="{{url("admin/products/add-to-cart",["id"=>$item->id])}}">Add To Cart</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

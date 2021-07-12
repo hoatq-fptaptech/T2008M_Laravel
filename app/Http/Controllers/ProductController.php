@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -83,5 +84,43 @@ class ProductController extends Controller
             abort(404);
         }
         return redirect()->to("products");
+    }
+
+    public function addToCart($id){
+        $product = Product::findOrFail($id);
+        $cart = [];// mảng giỏ hàng
+        if(Session::has("cart")){ // nếu có giỏ hàng rồi
+            $cart = Session::get("cart");// $_SESSION["cart"]
+        }
+        if(!$this->checkCart($cart,$product)){// sp chua co trong gio hang
+            $product->cart_qty = 1;//them 1 thuoc tinh ngoai le de bieu thi so luong sp trong gio hang
+            $cart[] = $product;
+        }else{
+            for($i=0;$i<count($cart);$i++){
+                if($cart[$i]->id == $product->id){
+                    $cart[$i]->cart_qty = $cart[$i]->cart_qty+1;
+                }
+            }
+        }
+        Session::put("cart",$cart);
+        return redirect()->to("cart");
+    }
+
+    // tim kiem xem sp da co trong gio hang hay chua
+    private function checkCart($cart,$p){
+        foreach ($cart as $item){
+            if($item->id == $p->id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function cart(){
+        $cart = [];// mảng giỏ hàng
+        if(session()->has("cart")){ // nếu có giỏ hàng rồi
+            $cart = session("cart");// $_SESSION["cart"]
+        }
+        dd($cart);
     }
 }

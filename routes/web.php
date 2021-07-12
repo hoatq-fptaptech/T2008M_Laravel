@@ -21,5 +21,5 @@ Route::match(["get","post"],"login",[LoginController::class,"login"])->name("log
 Route::middleware("auth")->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
+Route::get('/cart',[ProductController::class,"cart"]);
 
