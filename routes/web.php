@@ -22,4 +22,6 @@ Route::middleware("auth")->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 Route::get('/cart',[ProductController::class,"cart"]);
+Route::get('/checkout',[ProductController::class,"checkout"]);
+Route::post('/checkout',[ProductController::class,"placeOrder"]);
 
