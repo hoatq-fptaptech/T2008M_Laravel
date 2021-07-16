@@ -24,4 +24,9 @@ Route::middleware("auth")->get('/dashboard', function () {
 Route::get('/cart',[ProductController::class,"cart"]);
 Route::get('/checkout',[ProductController::class,"checkout"]);
 Route::post('/checkout',[ProductController::class,"placeOrder"]);
+Route::get('/checkout',function (){
+    return view("spa_view");
+});
+//api danh sach san pham
+Route::get("/product-list",[WebController::class,"productList"]);
 

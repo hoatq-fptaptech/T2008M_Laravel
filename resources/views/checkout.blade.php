@@ -44,7 +44,14 @@
                                         <label>Customer Address</label>
                                         <textarea class="form-control" name="customer_address"></textarea>
                                     </div>
-
+                                 <div class="form-group">
+                                     <label>City</label>
+                                     <select name="city">
+                                         <option value="hn">Ha Noi</option>
+                                         <option value="sg">Sai Gon</option>
+                                         <option value="dn">Da Nang</option>
+                                     </select>
+                                 </div>
                              </div>
                              <div class="col-md-6">
                                 <table class="table">
