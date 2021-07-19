@@ -105,7 +105,7 @@ class ProductController extends Controller
                 }
             }
         }
-        Session::put("cart",$cart);
+        Session::put("cart",$cart);// nap lai array vao session
         return redirect()->to("cart");
     }
 
@@ -124,8 +124,47 @@ class ProductController extends Controller
         if(session()->has("cart")){ // nếu có giỏ hàng rồi
             $cart = session("cart");// $_SESSION["cart"]
         }
-        dd($cart);
+        return view("cart",["cart"=>$cart]);
     }
+
+    public function updateQty($id,Request $request){
+        if(Session::has("cart")){
+            $cart = Session::get("cart");
+            for($i=0;$i<count($cart);$i++){
+                if($cart[$i]->id == $id){
+                    $cart[$i]->cart_qty = $request->get("cart_qty");
+                    if($cart[$i]->cart_qty == 0){ // xoa sp khi so luong  = 0
+                        unset($cart[$i]);
+                    }
+                    break;
+                }
+            }
+            Session::put("cart",$cart);
+        }
+        return redirect()->back();
+    }
+
+    // xoa 1 sp khoi gio hang
+    public function removeCartItem($id){
+        if(Session::has("cart")){
+            $cart = Session::get("cart");
+            for($i=0;$i<count($cart);$i++){
+                if($cart[$i]->id == $id){
+                    unset($cart[$i]);
+                    break;
+                }
+            }
+            Session::put("cart",$cart);
+        }
+        return redirect()->back();
+    }
+
+    // xoa gio hang
+    public function cleanCart(){
+        Session::forget("cart");
+        return redirect()->back();
+    }
+
 
     public function checkout(){
         $cart = [];// mảng giỏ hàng
