@@ -31,3 +31,4 @@ Route::get('/update-qty/{id}',[ProductController::class,"updateQty"]);
 //api danh sach san pham
 Route::get("/product-list",[WebController::class,"productList"]);
 
+Route::get("/nhan-ket-qua",[WebController::class,"nhanKetQua"]);
